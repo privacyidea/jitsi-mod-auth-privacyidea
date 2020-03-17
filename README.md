@@ -23,7 +23,7 @@ VirtualHost "<yourdomain>":
     }
 ~~~~
 
-Then add another VirtualHost:
+Then add another VirtualHost in ``/etc/prosody/conf.avail/<yourdomain>.lua``:
 
 ~~~~
 VirtualHost "guest.<yourdomain>"
@@ -31,11 +31,35 @@ VirtualHost "guest.<yourdomain>"
     c2s_require_encryption = false
 ~~~~
 
+In ``/etc/jitsi/meet/<yourdomain>-config.js`` you need to add the following:
+
+~~~~
+var config = {
+    hosts: {
+            domain: '<yourdomain>',
+            anonymousdomain: 'guest.<yourdomain>',
+            ...
+        },
+        ...
+}
+~~~~
+
+Finally in  ``/etc/jitsi/jicofo/sip-communicator.properties`` you have to set:
+
+~~~~
+org.jitsi.jicofo.auth.URL=XMPP:jitsi-meet.example.com
+~~~~
+
+(Basically you need to follow this guide: https://github.com/jitsi/jicofo#secure-domain)
+
+Additional step:
+
 In ``/etc/prosody/prosody.cfg.lua`` you need to add:
 
 ~~~~
 consider_bosh_secure = true;
 ~~~~
+
 
 # Install
 
