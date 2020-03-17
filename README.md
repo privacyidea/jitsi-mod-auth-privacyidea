@@ -31,7 +31,7 @@ VirtualHost "guest.<yourdomain>"
     c2s_require_encryption = false
 ~~~~
 
-In ``/etc/prosody/prosofy.cfg.lua`` you need to add:
+In ``/etc/prosody/prosody.cfg.lua`` you need to add:
 
 ~~~~
 consider_bosh_secure = true;
