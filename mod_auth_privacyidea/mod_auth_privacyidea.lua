@@ -10,8 +10,10 @@
 local log = module._log;
 local new_sasl = require "util.sasl".new;
 local json = require "util.json";
+prosody.unlock_globals()
 local https = require "ssl.https";
 local ltn12 = require("ltn12")
+prosody.lock_globals()
 local options = module:get_option("privacyidea_config");
 local server_url = options and options.server;
 assert(server_url, "No privacyIDEA server URL provided");
